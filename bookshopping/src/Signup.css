@@ -1,0 +1,272 @@
+.main-content {
+    display: flex;
+    background-color: white;
+    height: 100vh;
+    overflow: hidden;
+    position: relative; /* Allow for absolute positioning of children */
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+.flex4 {
+    flex: 1;
+    background-size: cover;
+    background: conic-gradient(from 60deg, #210F63 0deg 180deg, #431FC9 180deg 360deg);
+    height: 100vh;
+    width:20%;
+    overflow: hidden;
+    z-index: 0; /* Keep it behind the signup-content */
+    animation: slideInFromLeft 0.5s ease-in 0s 1 normal none;
+}
+
+.flex5 {
+  flex: 2;
+  width: 80%;
+
+  height: 100vh;  /* Ensures full height */
+  
+  background-image: url('D:\VS_CODE\bookshopping\public\Untitled design_20250228_104542_0000.svg');
+  background-size: 100% 100%; /* Ensures the image stretches to fit width & height */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repetition */
+  
+  overflow: hidden;
+  z-index: 0;
+}
+
+
+.flex5 .signup {
+    background-color: whitesmoke;
+    width: 60%;
+    height: 40%;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 25px;
+}
+.signup-content {
+  position: absolute; 
+  top: 0;
+  margin-top: 5%;
+  left: 8%;
+ 
+  background-color: #FFE7EE;
+  opacity: 0; /* Start hidden */
+  visibility: hidden; /* Hide until animation starts */
+  z-index: 10;
+  height: 80vh;
+  width: 30%;
+  
+  justify-content: center;
+  align-items: center;
+
+  /* Apply slide and fade-in effect with a delay */
+  animation: slideInFade 0.5s ease-in 0.4s forwards;
+}
+
+/* Combined Slide-In & Fade-In Animation */
+@keyframes slideInFade {
+  0% { 
+      opacity: 0; 
+      transform: translateX(-100%); 
+      visibility: hidden; 
+  }
+  1% { visibility: visible; } /* Show after animation starts */
+  100% { 
+      opacity: 0.7; 
+      transform: translateX(0); 
+      visibility: visible; 
+  }
+}
+
+
+/*signup content css style */
+.fname{
+  margin-left:4%;
+   font-family: cursive;
+   font-size:20px;
+}
+.enterfname {
+  margin-top:2%;
+  z-index: 20;
+  margin-left: 1.5%;
+  background-color: white ;
+  
+  width: 70%;
+  padding: 1%;
+}
+#fname{
+    border:0px;
+    background-color: white;
+    outline:none;
+}
+
+.lname{
+  margin-top:5%;
+  margin-left:4%;
+   font-family: cursive;
+   font-size:20px;
+}
+.enterlname {
+  margin-top:2%;
+  z-index: 20;
+  margin-left: 1.5%;
+  background-color: white ;
+  
+  width: 70%;
+  padding: 1%;
+}
+#lname{
+    border:0px;
+    background-color: white;
+    outline:none;
+}
+
+.gmail{
+  margin-top:5%;
+  margin-left:4%;
+   font-family: cursive;
+   font-size:20px;
+}
+.entergmail {
+  margin-top:2%;
+  z-index: 20;
+  margin-left: 1.5%;
+  background-color: white ;
+  
+  width: 70%;
+  padding: 1%;
+}
+#gmail{
+    border:0px;
+    background-color: white;
+    outline:none;
+}
+
+.phone{
+  margin-top:5%;
+  margin-left:4%;
+   font-family: cursive;
+   font-size:20px;
+}
+.enterphone {
+  margin-top:2%;
+  z-index: 20;
+  margin-left: 1.5%;
+  background-color: white ;
+  
+  width: 70%;
+  padding: 1%;
+}
+#phone{
+    border:0px;
+    background-color: white;
+    outline:none;
+}
+.password{
+  margin-top:5%;
+  margin-left:4%;
+   font-family: cursive;
+   font-size:20px;
+}
+.enterpass {
+  margin-top:2%;
+  z-index: 20;
+  margin-left: 1.5%;
+  background-color: white ;
+  
+  width: 70%;
+  padding: 1%;
+}
+#pwd{
+    border:0px;
+    background-color: white;
+    outline:none;
+}
+
+.repass{
+  margin-top:5%;
+  margin-left:4%;
+   font-family: cursive;
+   font-size:20px;
+}
+.reenterpass {
+  margin-top:2%;
+  z-index: 20;
+  margin-left: 1.5%;
+  background-color: white ;
+  
+  width: 70%;
+  padding: 1%;
+}
+#rePassword{
+    border:0px;
+    background-color: white;
+    outline:none;
+}
+
+.submit {
+  
+  text-align: center;
+  margin-left:20%;
+  margin-right:20%;
+  margin-top:10%;
+  padding:1.5%;
+  background-color:aqua;
+  font-family: cursive;
+
+  
+}
+
+.submit p{
+  font-size:15px;
+  transition: font-size 0.03s ease-in;
+}
+.submit p:hover{
+  font-size:20px;
+}
+
+
+
+/* Message box styles */
+.msg {
+  position: fixed;
+  top: 2%;
+  left: 67%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  min-width: 300px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  
+}
+
+/* Success message */
+.message-box.success {
+  background-color: #ddffdd;
+  color: #4F8A10;
+  border: 1px solid #4F8A10;
+}
+
+
+/* Error message */
+.message-box.error {
+  background-color: #ffdddd;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  
+}
+
