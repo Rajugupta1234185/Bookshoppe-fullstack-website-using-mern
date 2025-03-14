@@ -3,7 +3,7 @@ const { default: mongoose } = require("mongoose");
 const userNotificationSchema = new mongoose.Schema(
     {
         gmail: { type: String, required: true },
-        productid: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true } 
+        msg:{type:String,require:true}
     }, 
     { timestamps: true }
 );

@@ -6,9 +6,6 @@ require('./database_conn/connect');
 
 
 
-// Import the OpenAI API function
-const { callOpenAIAPI } = require('./OpenAi_API');
-
 
 const express = require('express');
 const app = express();
@@ -33,21 +30,7 @@ app.use('/api/sendotp',otpRoute);
 app.use('/api/verifyotp',otpRoute);
 app.use('/api/updatepassword',updateUserinfo);
 
-// API endpoint that connects your React frontend to OpenAI API through your server
-app.post("/chat", async (req, res) => {
-    const { message } = req.body;
-    
-    try {
-        // Call the external API that interacts with OpenAI
-        const openAIResponse = await callOpenAIAPI(message);
-        
-        // Send the response back to the frontend
-        res.json(openAIResponse);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error with API");
-    }
-});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

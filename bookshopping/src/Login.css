@@ -98,7 +98,7 @@
     width: 20%;
     margin-left: 10%;
     height: 70%;
-    background-color: #E68C1E;
+    background-color: rgba(230, 140, 30, 0.5);
     border-radius: 30px;  /* Rounded corners */
     opacity: 0.3;         /* Initial opacity */
     transition: opacity 0.3s ease;  /* Smooth transition for opacity change */
@@ -216,7 +216,99 @@
   padding-top:8%;
   padding-bottom:8%;
   color:white;
-  opacity:200;
+  opacity:200;        .main-content1 {
+    background-image: url('D:\VS_CODE\bookshopping\public\WhatsApp Image 2025-02-18 at 08.26.21.jpeg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.flex-in-main {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.flex1, .flex2, .flex3 {
+    width: 30%;
+    min-width: 300px;
+    height: auto;
+}
+
+.flex1 {
+    margin-left: 10%;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+}
+
+.flex3 {
+    width: 30%;
+    min-width: 300px;
+    height: auto;
+    background-color: #E68C1E;
+    border-radius: 30px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+
+.flex3:hover {
+    opacity: 0.8;
+}
+
+.flex3 .Login-content {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.flex3 .Login-content input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+}
+
+.flex3 .Login-content .login-button {
+    width: 85%;
+    padding: 10px;
+    background-color: #FF4141;
+    opacity: 0.7;
+    border-radius: 15px;
+    transition: opacity 0.3s ease-in;
+}
+
+.flex3 .Login-content .login-button:hover {
+    opacity: 1;
+}
+
+.flex2 .forget {
+    background-color: rgba(247, 105, 231, 0.35);
+    margin-left: 10%;
+    border-radius: 25px;
+    text-align: center;
+    padding: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .flex-in-main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex1, .flex3, .flex2 {
+        width: 80%;
+        margin: 10px 0;
+    }
+}
   
 }
 .flex2  .forget p:hover{

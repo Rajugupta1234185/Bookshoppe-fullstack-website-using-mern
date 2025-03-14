@@ -1,0 +1,146 @@
+.admin-main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: azure;
+    transition: all 0.3s ease-in-out;
+}
+
+.admin-navbar {
+    width: 25%;
+    height: 100%;
+    background-color: blue;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Sidebar hidden state */
+.admin-navbar.hide {
+    transform: translateX(-100%);
+    width: 0;
+}
+
+/* Sidebar visible state */
+.admin-navbar.show {
+    transform: translateX(0);
+    width: 25%;
+}
+
+/* Hide navbar content except for toggle button when sidebar is hidden */
+.admin-navbar.hide .navbar-content {
+    display: none;
+}
+
+.display-box {
+    flex: 1;
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+}
+
+.display-box11 {
+    width: 100%;
+    height: 90%;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.display-box12{
+    width:100%;
+    height:90%;
+    
+}
+
+.adminbox1, .adminbox2, .adminbox3, .adminbox4, .adminbox5, .adminbox6 {
+    background-color: #F13CE2;
+    opacity: 50%;
+    height: 100px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+}
+
+
+.display-box2 {
+    height: 10%;
+    width: 100%;
+    background-color: blueviolet;
+}
+
+.admin-dashboard,
+.admin-seller,
+.admin-user,
+.admin-profile,
+.product {
+    font-family: cursive;
+    font-size: 30px;
+    font-weight: 200;
+    color: Black;
+    margin-top: 10%;
+    margin-left: 2%;
+}
+
+.admin-dashboard:hover,
+.admin-seller:hover,
+.admin-user:hover,
+.admin-profile:hover,
+.product:hover {
+    color: chartreuse;
+    opacity: 1;
+    transition: ease-in from right;
+    transition-duration: 1s;
+}
+
+.admin-logout {
+    margin-top: 70%;
+    background-color: #d12020;
+    opacity: 0.5;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 20px;
+}
+
+.admin-logout p {
+    font-family: cursive;
+    font-size: 30px;
+    font: 200;
+    padding: 2px;
+}
+
+.admin-logout p:hover {
+    padding: 4px;
+    transition: ease-in;
+}
+
+.admin-logout:hover {
+    background-color: #d12020;
+    opacity: 1;
+    transition: ease-in;
+}
+
+.togglebar {
+    font-size: 30px;
+    font-family: cursive;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+/* Add additional styling for toggle button */
+.toggle-btn {
+    padding: 10px;
+    background: blueviolet;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
