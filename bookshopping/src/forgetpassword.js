@@ -36,7 +36,7 @@ const Forgetpassword = ({ backtohome, otpVerifysuccess }) => {
       }
 
       // Send OTP request
-      const server_response = await axios.post('https://localhost:5000/api/sendotp/send-otp', {
+      const server_response = await axios.post('http://localhost:5000/api/sendotp/send-otp', {
         gmail: finalgmail.gmail, // Ensure this is sent as an object
       });
 
