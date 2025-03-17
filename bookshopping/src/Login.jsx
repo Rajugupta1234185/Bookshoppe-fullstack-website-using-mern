@@ -105,6 +105,7 @@ const forgetAnimation = useSpring({
           <animated.div className="forget" style={forgetAnimation} onClick={onforgetfunction}>
             <p>Forget Password ?</p>
           </animated.div>
+     
         </div>
 
         <div className="flex3">
@@ -130,6 +131,7 @@ const forgetAnimation = useSpring({
             <div className="createnewaccount" onClick={onCreateAccount}>
               <p>Create A new Account</p>
             </div>
+            <div className='forget-mob' onClick={onforgetfunction}><p>Forget Password?</p></div>
           </div>
         </div>
       </div>
