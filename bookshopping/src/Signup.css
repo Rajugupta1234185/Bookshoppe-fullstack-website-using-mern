@@ -34,7 +34,7 @@
 
   height: 100vh;  /* Ensures full height */
   
-  background-image: url('D:\VS_CODE\bookshopping\public\Untitled design_20250228_104542_0000.svg');
+  background-image: url('/public/Untitled design_20250228_104542_0000.svg');
   background-size: 100% 100%; /* Ensures the image stretches to fit width & height */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents repetition */
