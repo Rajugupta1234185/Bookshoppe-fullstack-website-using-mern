@@ -1,0 +1,240 @@
+
+.home-maincontent{
+  position:absolute;
+  height:100vh;
+  width:100%;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+  .firstdiv {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+  
+    padding: 0 30px;
+    background:white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo-gif {
+ 
+    width: 100%;
+    height: 150%;
+    object-fit: contain;
+  }
+  .cart {
+   
+  margin-top:30%;
+    margin-left: 700%;
+ 
+    font-size: 1.4rem;
+    font-weight: bold;
+    color:#333;
+
+  }
+  .signin{
+   
+  margin-top:30%;
+    margin-left: 50%;
+   
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+
+  }
+  .cart, .signin {
+    position: relative;
+    display: inline-block; /* Makes the underline match text width */
+    cursor: pointer;
+  }
+  
+  /* Hover underline effect */
+  .cart::after,
+  .signin::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Adjust if needed */
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease;
+  }
+  
+  .cart:hover::after,
+  .signin:hover::after {
+    width: 100%;
+  }
+  
+
+ 
+  
+  .logo-gif {
+   margin-top:20%;
+    width: 50%;
+    height: auto;
+
+  }
+  
+  
+  
+  /* Search Bar */
+  .home-searchbar input {
+  
+    margin-top:10%;
+    width: 200%;
+    height:25%;
+    border: 2px solid #6a11cb;
+    border-radius: 20px;
+    outline: none;
+  }
+  #search::placeholder {
+    font-size: 1.5rem; /* or whatever size you want */
+    color: #999; /* optional: change placeholder color */
+    font-weight: 500; /* optional: make it bolder */
+  }
+  #search{
+    font-size:1.5rem;
+    color:#6a11cb;
+  }
+
+  .sliddingtemplate {
+    margin-top: 15%;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 50%;
+    width: 70%;
+    background-color:white;
+    overflow: hidden; /* Ensure the content does not overflow */
+    position: relative;
+  }
+  
+  .sliding-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the image fully covers the container */
+   
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .genres{
+    z-index:0;
+    position:relative;
+    margin-left:2%;
+    height:10%;
+    width:100%;
+
+
+  }
+  .genreheading p{
+    font-size: 4rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+  }
+
+  .genrename{
+    display:flex;
+   justify-content: space-between;
+    width:100%;
+    
+  }
+  .fiction {
+    width: 200px; /* set your preferred size */
+    height: 200px;
+    background-image: url('/public/genre/Fiction.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  .fiction:hover {
+    background-image: url('/public/genre/Fiction.gif'); /* image you want on hover */
+    cursor: pointer;
+  }
+  .business {
+    width: 200px; /* set your preferred size */
+    height: 200px;
+    background-image: url('/public/genre/Business.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  .business:hover {
+    background-image: url('/public/genre/Business.gif'); /* image you want on hover */
+    cursor: pointer;
+  }
+  .biography {
+    width: 200px; /* set your preferred size */
+    height: 200px;
+    background-image: url('/public/genre/Biography.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  .biography:hover {
+    background-image: url('/public/genre/Biography.gif'); /* image you want on hover */
+    cursor: pointer;
+  }
+
+  .kid {
+    width: 200px; /* set your preferred size */
+    height: 200px;
+    background-image: url('/public/genre/Kid.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  .kid:hover {
+    background-image: url('/public/genre/Kid.gif'); /* image you want on hover */
+    cursor: pointer;
+  }
+  .romantic {
+    width: 200px; /* set your preferred size */
+    height: 200px;
+    background-image: url('/public/genre/Romantic.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: background-image 0.3s ease-in-out;
+  }
+  
+  .romantic:hover {
+    background-image: url('/public/genre/Romantic.gif'); /* image you want on hover */
+    cursor: pointer;
+  }
+  
+  
+  
+  
+  
+  
+  .category-fiction,.category-business,.category-biography,.category-kid,.category-romantic{
+    z-index:0;
+    position:relative;
+    margin-top:15%;
+    margin-left:2%;
+    height:10%;
+    width:100%;
+
+
+  }
+  .fictionheading p, .biographyheading p, .businessheading p, .kidheading p , .romanticheading p{
+    font-size: 4rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+  }
+
+  

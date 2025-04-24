@@ -1,0 +1,351 @@
+
+.home-maincontent{
+  position:absolute;
+  height:100vh;
+  width:100%;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+  .firstdiv {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+  
+    padding: 0 30px;
+    background:white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo-gif {
+ 
+    width: 100%;
+    height: 150%;
+    object-fit: contain;
+  }
+  .cart {
+   
+  margin-top:30%;
+    margin-left: 700%;
+ 
+    font-size: 1.4rem;
+    font-weight: bold;
+    color:#333;
+
+  }
+  .signin{
+   
+  margin-top:30%;
+    margin-left: 50%;
+   
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+
+  }
+  .cart, .signin {
+    position: relative;
+    display: inline-block; /* Makes the underline match text width */
+    cursor: pointer;
+  }
+  
+  /* Hover underline effect */
+  .cart::after,
+  .signin::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Adjust if needed */
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease;
+  }
+  
+  .cart:hover::after,
+  .signin:hover::after {
+    width: 100%;
+  }
+  
+
+ 
+  
+  .logo-gif {
+   margin-top:20%;
+    width: 50%;
+    height: auto;
+
+  }
+  
+  
+  
+  /* Search Bar */
+  .home-searchbar input {
+  
+    margin-top:10%;
+    width: 200%;
+    height:25%;
+    border: 2px solid #6a11cb;
+    border-radius: 20px;
+    outline: none;
+  }
+  #search::placeholder {
+    font-size: 1.5rem; /* or whatever size you want */
+    color: #999; /* optional: change placeholder color */
+    font-weight: 500; /* optional: make it bolder */
+  }
+  #search{
+    font-size:1.5rem;
+    color:#6a11cb;
+  }
+
+  .profilesection {
+    z-index:0;
+   
+    margin-top:15%;
+    width: 20%;
+    height: 60%;
+
+    background-color:white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    border: #6a11cb;
+    border-radius: 25px;
+  }
+  .Yourprofile, .Orderhistory, .Updatedetails, .createselleraccount,.Complaintbox,.Notificationbar{
+    padding-top: 5%;
+    
+    height:8%;
+    width:100%;
+    cursor:pointer;
+   
+   
+  }
+.Yourprofile p , .Orderhistory p, .Updatedetails p, .createselleraccount p, .Complaintbox p, .Notificationbar p{
+  padding-left: 5%;
+  font-size: 1.5rem;
+  font-weight: 200;
+
+}
+.Yourprofile p:hover , .Orderhistory p:hover, .Updatedetails p:hover, .createselleraccount p:hover, .Complaintbox p:hover, .Notificationbar p:hover{
+ color:aqua;
+}
+.Yourprofile p{
+  color: aqua;
+  opacity:200%;
+}
+
+.Logout{
+  margin-top:25%;
+
+
+  background-color: aqua;
+    text-align: center;
+
+  height:10%;
+  width:70%;
+  margin-left:10%;
+  border-radius: 24px;
+  border-color:1px solid #ccc;
+}
+.Logout p{
+  padding:5%;
+  font-size:1.5rem;
+  cursor:pointer;
+
+}
+.Logout p:hover{
+  padding:3%;
+  font-size:2rem;
+}
+
+
+
+
+.Maincontentarea {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 65%;
+  min-height: 60%;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  border-bottom: 5px solid #ccc;
+}
+
+.Maincontentarea h3 {
+  font-size: 2rem;
+  color: #6a11cb;
+  margin-bottom: 20px;
+}
+
+.Maincontentarea p {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 400;
+}
+
+.Maincontentarea strong {
+  color: #6a11cb;
+}
+
+.custom-form {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.firstrow{
+  display:flex;
+  gap:30%;
+}
+.text p{
+  font-size:1.5rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.secondrow{
+  margin-top:3%;
+  display:flex;
+  gap:19%;
+}
+.inputbox{
+  border:none;
+  border-bottom: 1px solid black;
+  font-size: 1.5rem;
+  outline: none;
+}
+.thirdrow{
+  display:flex;
+  gap:34.7%;
+}
+
+.seller-form-container {
+  width: 65%;
+  margin: 20px auto;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ddd;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.form-group-row label,
+.form-group-col label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-bottom: 2px solid orange;
+}
+
+.form-group-col {
+  margin-bottom: 1rem;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: darkorange;
+}
+
+.otpverify{
+  position:absolute;
+  z-index:15;
+  align-items: center;
+  top:30%;
+  left:35%;
+  width:30%;
+  height:50%;
+  background-color:aqua;
+  opacity:100%;
+  border-radius: 24px;
+  text-align: center;
+
+}
+.enterotp{
+  margin-top:20%;
+}
+.enterotp p{
+  font-size: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.inputotp{
+  font-size:1rem;
+  width:40%;
+  margin-left:29%;
+}
+.otp{
+  display:flex;
+  gap:5%;
+}
+.cancelotp{
+ height:10%;
+ width:30%;
+ background-color: white;
+ margin-top:30%;
+ margin-left:18%;
+ border-radius:24px;
+}
+
+.proceedotp{
+  height:10%;
+  width:30%;
+  background-color: white;
+  margin-top:30%;
+  border-radius: 24px;
+ }
+ .cancelotp p, .proceedotp p{
+  font-size:1.2rem;
+  font-weight: 200;
+  font-family: 'Courier New', Courier, monospace;
+  padding:2%;
+}
+
+.cancelotp p:hover, .proceedotp :hover{
+  padding:1%;
+}
+ .inputotpbox{
+  stroke-width: 60%;
+  border-radius: 24px;
+ }

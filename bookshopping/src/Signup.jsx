@@ -5,7 +5,10 @@ import axios from 'axios';
 import OTPVerification from './OTPVerification';
 import { useFormData } from './FormDataContext'; // Import the useFormData hook
 
-const Signup = ({ gotootp }) => {
+import { useNavigate } from 'react-router-dom';
+
+const Signup = ({  }) => {
+  const navigate =useNavigate();
   const { formData, updateFormData } = useFormData(); // Access formData and updateFormData from context
 
   // State for error/success message
@@ -53,7 +56,7 @@ const Signup = ({ gotootp }) => {
           setMessageType('success'); // Set the message type to success
           setIsOtpSent(true); // Mark OTP as sent
           alert(formData.gmail);
-          gotootp(); // Call the OTP verification function
+          navigate('/otpverify'); // Call the OTP verification function
         } else {
           setMessage('Error: No data received from server');
           setMessageType('error');

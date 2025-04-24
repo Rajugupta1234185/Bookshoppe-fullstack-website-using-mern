@@ -1,0 +1,250 @@
+.body{
+    background-color: aliceblue;
+}
+.sellermain{
+    width:100%;
+    height:120vh;
+    display:flex;
+    background-color: aliceblue;
+}
+.sellernav{
+    width:20%;
+    height:100%;
+    background-color:aliceblue;
+    border-right: 2px solid black;
+ 
+
+}
+.sellerprofile,.securityoption, .sellercomplaints,.Notification{
+    
+    width:100%;
+    height:5%;
+    background: linear-gradient(to bottom, aliceblue 90%, #cccccd 10%);
+    margin-top:5%;
+    transition: backgrount 0.1s ease-in;
+   cursor:pointer;
+}
+.sellerprofile:hover,.securityoption:hover, .sellercomplaints:hover, .Notification:hover{
+    background: linear-gradient(to bottom, aliceblue 70%, #cccccd 30%);
+}
+
+.sellerprofile p,.securityoption p, .sellercomplaints p, .Notification p{
+   font-size: 1.7rem;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.sellerlogout{
+    margin-top: 150%;
+    background-color: white;
+    height:7%;
+    width:80%;
+    text-align: center;
+    margin-left:5%;
+    border:1px solid black;
+    border-radius:25px;
+    transition:transform 0.1s ease-in-out;
+    cursor: pointer;
+}
+.sellerlogout:hover{
+    transform:scale(0.95);
+}
+.sellerlogout p{
+    font-size: 1.7rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding:2px;
+    
+}
+.sellerdashboard,.Updatebook{
+    width:80%;
+    height:100%;
+    background-color: aliceblue;
+    content: center;
+}
+
+.sellercrudoperation{
+    display:flex;
+    margin-top: 20%;
+    column-gap: 10%;
+    margin-left:5%;
+
+}
+.addbook,.updatebook,.deletebook,.booklist{
+    height:30%;
+    width:20%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+    transition:transform 0.1s ease-in-out;
+    cursor: pointer;
+}
+.addbook:hover,.updatebook:hover,.deletebook:hover,.booklist:hover{
+  transform:scale(0.95)
+   
+}
+.addbook p, .updatebook p, .deletebook p, .booklist p{
+    padding: 5%;
+    font-size: 1.7rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.sellerdashboardp{
+    text-align: center;
+    padding-top:5%;
+}
+.sellerdashboardp p{
+    font-size: 3rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+/* Add Book Form */
+.bookform {
+    z-index: 10;
+    position:absolute;
+    top:2%;
+    left:40%;
+
+ 
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+   
+  }
+  
+  .bookform form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bookform .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .bookform label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .bookform input, .bookform textarea {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .bookform input:focus, .bookform textarea:focus {
+    border-color: #007bff;
+  }
+  
+  .bookform textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .bookform button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bookform button:hover {
+    background-color: #0056b3;
+  }
+  
+  .bookform button:active {
+    background-color: #004085;
+  }
+
+  .book-grid {
+    margin-top:5%;
+    margin-left:5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  
+  }
+  
+  .book-card {
+    border: 1.5px solid black;
+    padding: 10px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 24px;
+    transition: transform 0.1s ease-in;
+  }
+  .book-card:hover{
+    transform:scale(0.95);
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+  }
+  
+  .modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 20px;
+    width: 30%;
+    border-radius: 25px;
+    border:2px solid black;
+  }
+
+   .BOOKLIST{
+    content: center;
+   }
+  .book-table {
+    width: 100%;
+   
+    border-collapse: collapse;
+    margin-top: 20px;
+
+  }
+  
+  .book-table th,
+  .book-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .book-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  
+  
+  /* Responsive Design for Smaller Screens */
+  @media (max-width: 768px) {
+    .bookform {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .bookform button {
+      padding: 10px 18px;
+    }
+  }
+
+

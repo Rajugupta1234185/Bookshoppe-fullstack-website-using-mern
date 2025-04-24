@@ -1,0 +1,104 @@
+.admin-main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color:white;
+    transition: all 0.3s ease-in-out;
+}
+
+.admin-navbar {
+    width: 25%;
+    height: 100%;
+    background-color: #569abf;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Sidebar hidden state */
+.admin-navbar.hide {
+    transform: translateX(-100%);
+    width: 0;
+}
+
+/* Sidebar visible state */
+.admin-navbar.show {
+    transform: translateX(0);
+    width: 25%;
+}
+
+/* Hide navbar content except for toggle button when sidebar is hidden */
+.admin-navbar.hide .navbar-content {
+    display: none;
+}
+
+.display-box {
+    flex: 1;
+    padding: 30px;
+    background-color: #ecf0f1;
+    overflow-y: auto;
+}
+
+
+.complaints-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.complaint-card {
+    background-color: #fff8f2;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.complaint-card:hover {
+    transform: scale(1.02);
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.popup-box button {
+    margin-top: 15px;
+    margin-right: 10px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.popup-box button:first-of-type {
+    background-color: #28a745;
+    color: white;
+}
+
+.popup-box button:last-of-type {
+    background-color: #ccc;
+}
+
+

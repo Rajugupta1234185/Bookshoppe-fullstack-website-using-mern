@@ -4,9 +4,12 @@ import { GmailValidate } from './errorhandling';
 import { useSpring, animated } from '@react-spring/web';
 import axios from 'axios';
 
+import { useNavigate } from 'react-router-dom';
+
 import { PasswordValidate } from './errorhandling';
 
-const Forgetpassword = ({ backtohome, otpVerifysuccess }) => {
+const Forgetpassword = ({  otpVerifysuccess }) => {
+  const navigate=useNavigate();
   const [finalgmail, setgmail] = useState({ gmail: '' });
   const [otpSent, setOtpSent] = useState(false); // State to track if OTP is sent
   const [otpExpireTime, setOtpExpireTime] = useState(0); // State for OTP expiry time
@@ -168,6 +171,10 @@ const Forgetpassword = ({ backtohome, otpVerifysuccess }) => {
     }
   };
 }
+  }
+
+  const backtohome=()=>{
+    navigate('/backtohome');
   }
 
   return (

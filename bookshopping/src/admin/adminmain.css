@@ -2,14 +2,14 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    background-color: azure;
+    background-color:white;
     transition: all 0.3s ease-in-out;
 }
 
 .admin-navbar {
     width: 25%;
     height: 100%;
-    background-color: blue;
+    background-color: #569abf;
     transition: transform 0.3s ease-in-out;
     position: relative;
 }
@@ -40,7 +40,7 @@
 .display-box11 {
     width: 100%;
     height: 90%;
-    background-color: aquamarine;
+    background-color: white;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -55,10 +55,10 @@
 }
 
 .adminbox1, .adminbox2, .adminbox3, .adminbox4, .adminbox5, .adminbox6 {
-    background-color: #F13CE2;
-    opacity: 50%;
-    height: 100px;
-    width: 150px;
+    background-color: #569abf;
+    opacity: 100%;
+    height: 50%;
+    width: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,12 +67,12 @@
     border-radius: 10px;
 }
 
-
-.display-box2 {
-    height: 10%;
-    width: 100%;
-    background-color: blueviolet;
+.adminbox1 p, .adminbox2 p, .adminbox3 p, .adminbox4 p, .adminbox5 p, .adminbox6 p{
+     font-size:1.7rem;
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+
 
 .admin-dashboard,
 .admin-seller,
@@ -143,4 +143,21 @@
     margin-top: 10px;
     border-radius: 5px;
 }
+
+.pending-highlight {
+    border: 2px solid red;
+    position: relative;
+}
+
+.pending-count {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
 

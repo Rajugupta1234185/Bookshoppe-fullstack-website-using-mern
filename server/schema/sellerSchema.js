@@ -1,17 +1,20 @@
-const { default: mongoose } = require("mongoose");
+// models/Seller.js
+const mongoose = require("mongoose");
 
-const sellerSchema = new mongoose.Schema(
-    {
-        firstname: { type: String, required: true },
-        lastname: { type: String, required: true },
-        contact: { type: String, required: true },
-        gmail: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
-        profession: { type: String, required: true },
-        status: { type: String, default: "active" }
-    },
-    { timestamps: true }
-);
+const sellerSchema = new mongoose.Schema({
+  fname: String,
+  lname: String,
+  gender: String,
+  phone: String,
+  email: { type: String, unique: true },
+  password: String,
+  store: String,
+  address: String,
+  gstin: { type: String, default: "" },
+  bankname: String,
+  account: String,
+  ifsc: String,
+  approvedAt: { type: Date, default: Date.now }
+});
 
-const Seller = mongoose.model("Seller", sellerSchema);
-module.exports = Seller;
+module.exports = mongoose.model("Seller", sellerSchema);

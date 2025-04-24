@@ -1,53 +1,52 @@
-import React,{useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Router and Routes
 import { FormDataProvider } from './FormDataContext'; // Import the provider
-// import Admin from './admin/adminmain';
-import Gmailverification from './OTPVerification';
+
 import Login from './Login';
 import Signup from './Signup';
 import Forgetpassword from './forgetpassword';
+import Dashboard from './Dashboard';
+import Profile from './Profile';
+import AfterDashboard from './afterlogin';
+
+import Allrole from './allRole';
+import UserandAdmin from './UserandAdmin';
+import UserandSeller from './UserandSeller';
+import AdminandSeller from './AdminandSeller';
+import Admin from './admin/adminmain';
+import Seller from './Seller';
+import Reviewseller from './reviewdemoseller';
+import Adminsellercomplaint from './Adminsellercomplaint';
+
 
 function App() {
-  // State to toggle between login, signup, and forgetpassword
-  const [page, setPage] = useState('login'); // 'login', 'signup', 'forgetpassword'
-
-  // Function to handle page change
-  const togglePage = (pageName) => {
-    setPage(pageName);
-  };
-
   return (
-    <div className="auth-container">
-      {/* Conditionally render Login, Signup or Forgetpassword */}
-      {page === 'login' && (
-        <div className="loginpage">
-          <Login onCreateAccount={() => togglePage('signup')} onforgetfunction={() => togglePage('forgetpassword')} />
-        </div>
-      )}
-      {page === 'signup' && (
-        <div className="signupage">
-          <Signup gotootp={() => togglePage('otpverification')} />
-        </div> 
-      )}
-      {page === 'forgetpassword' && (
-        <div className="forget-page">
-          <Forgetpassword backtohome={() => togglePage('login')} />
-        </div>
-      )}
-      {page === 'otpverification' && (
-        <div className="otppage">
-          <Gmailverification backtologin={() => togglePage('login')} backtoregistration={() => togglePage('signup')} />
-        </div>
-      )}
-    </div>
+    <Router>
+      <div className="auth-container">
+        <Routes>
+          {/* Define Routes for each page */}
+          <Route path="/" element={<Dashboard />} /> {/* Default route to login */}
+          <Route path="/createnewaccount" element={<Signup />}/>
+          <Route path="/forgetpassword" element={<Forgetpassword/>}/>
+          <Route path="/backtohome" element={<Login/>}/>
+          <Route path="/afterdashboard" element={<AfterDashboard/>}/>
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/allRole" element={<Allrole/>}/>
+          <Route path="/UserandAdmin" element={<UserandAdmin/>}/>
+          <Route path="/UserandSeller" element={<UserandSeller/>}/>
+          <Route path="/AdminandSeller" element={<AdminandSeller/>}/>
+          <Route path="/admin" element={<Admin/>}/>
+          <Route path="/seller" element={<Seller/>}/>
+          <Route path="/reviewdemoseller" element={<Reviewseller/>}/>
+          <Route path="/adminsellercomplaint" element={<Adminsellercomplaint/>}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
-// function App(){
-//   return(
-//          <Admin/>
-//   );
-// }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

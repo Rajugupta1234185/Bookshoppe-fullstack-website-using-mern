@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 
-const Login = ({ onCreateAccount ,onforgetfunction}) => {
+
+
+const Login = () => {
+  const navigate =useNavigate();
   const [logindata, setdata] = useState({
     gmail: '',
     password: '',
   });
 
   const [showForget, setShowForget] = useState(false); // State to show "Forget Password?" message
+
+//navigation
+const onCreateAccount=()=>{
+  navigate('/createnewaccount');
+}
+
+const onforgetfunction=()=>{
+  navigate('/forgetpassword');
+}
+//close navigation function
 
   // Handle input changes
   const handleChange = (e) => {
@@ -60,10 +74,42 @@ const forgetAnimation = useSpring({
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/loginauthentification/loginauthentification', logindata);
+      const response = await axios.post(
+        "http://localhost:5000/api/loginauthentification/loginauthentification",
+        logindata,
+        { withCredentials: true } // 👈 THIS is required for cookies!
+      );
+      console.log(response.data);  // Should log 'Cookie set!'
+    
       alert(response.data.message);
-      setShowForget(false); // Hide forget password message on successful login
+      setShowForget(false);
+      //----------my block of code------------------
+          if(response.data.id ===1){
+            navigate('/allRole');
+          }
+          if(response.data.id===2){
+             navigate('/UserandAdmin');
+
+          }
+          if(response.data.id===3){
+            navigate('/UserandSeller');
+          }
+          if(response.data.id===4){
+            navigate('/AdminandSeller');
+          }
+          if(response.data.id===5){
+            navigate('/afterdashboard');
+          }
+          if(response.data.id===6){
+            navigate('/admin');
+          }
+          if(response.data.id===7){
+            navigate('/seller');
+          }
+      //---------------------------------------
+    
     } catch (error) {
+    
       console.error('Login Error:', error);
       if (error.response?.data?.message === 'Invalid credentials') {
         setShowForget(true); // Show forget password message on incorrect password
