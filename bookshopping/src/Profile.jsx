@@ -200,6 +200,71 @@ const Profile = () => {
     fetchProfile();
   }, []);
 
+
+
+  //Notification view setup
+  const [allnotification, setallnotification] = useState([]);
+ 
+  
+  const setnotificationview = async () => {
+    setView('notification');
+  
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/sent/getusernotification',
+        { email: profile.email } // ✅ Properly formatted body
+      );
+  
+      setallnotification(response.data.allNotifications);
+      
+    } catch (error) {
+      console.error('Failed to fetch notifications:', error);
+    }
+  };
+  
+
+  //end of this block  of code
+
+  // usercomplaint box
+       const[usercomplaintmsg,setusercomplaintmsg]=useState('');
+       const handleSendComplaint = async () => {
+        const token = Cookies.get('token');
+      
+        if (!token) {
+          alert("You must be logged in to submit a complaint.");
+          return;
+        }
+      
+        try {
+          const response = await axios.post(
+            'http://localhost:5000/api/sent/sendusercomplaint',
+            {
+              token,
+              text: usercomplaintmsg,
+            },
+            {
+              withCredentials: true // ✅ moved to config object
+            }
+          );
+      
+          alert(response.data.message);
+        } catch (error) {
+          console.error("Axios error:", error);
+          alert(error.response?.data?.message || "Failed to send complaint.");
+        }
+      };
+      
+  //end of this block of code
+
+
+  //handle logout
+
+  const handleLogout = () => {
+    Cookies.remove('token'); // Remove the auth token
+    window.location.href = '/login'; // Redirect to login page or home
+  };
+  //end
+
   return (
     <div className="home-maincontent">
       {/* Top Bar */}
@@ -225,8 +290,8 @@ const Profile = () => {
         <div className="Updatedetails" onClick={() => setView('update')}><p>Update Personal Details</p></div>
         <div className="createselleraccount" onClick={() => setView('seller')}><p>Create Seller Account</p></div>
         <div className="Complaintbox" onClick={() => setView('complaint')}><p>Complaint Box</p></div>
-        <div className="Notificationbar" onClick={() => setView('notification')}><p>Notification</p></div>
-        <div className="Logout" onClick={() => setView('logout')}><p>Log out</p></div>
+        <div className="Notificationbar" onClick={setnotificationview}><p>Notification</p></div>
+        <div className="Logout" onClick={handleLogout}><p>Log out</p></div>
       </div>
 
       {/* Dynamic Main Content */}
@@ -326,18 +391,56 @@ const Profile = () => {
             
 
             {view === 'complaint' && (
-              <div>
-                <h3>Complaint Box</h3>
-                <textarea placeholder="Write your complaint here..."></textarea>
-              </div>
-            )}
+        <div>
+          <h3>Complaint Box</h3>
+          <textarea
+            placeholder="Write your complaint here..."
+            value={usercomplaintmsg}
+            onChange={(e) => setusercomplaintmsg(e.target.value)}
+          />
+          <br />
+          <button onClick={handleSendComplaint}>Send</button>
+        </div>
+      )}
 
-            {view === 'notification' && (
-              <div>
-                <h3>Notifications</h3>
-                <p>You have no notifications.</p>
-              </div>
-            )}
+{view === 'notification' && (
+  <div className="notification-view">
+    <h2>🔔 All Notifications</h2>
+
+    {allnotification.length === 0 ? (
+      <p>No notifications available.</p>
+    ) : (
+      <ul>
+        {[...allnotification]
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt || b.timestamp) -
+              new Date(a.createdAt || a.timestamp)
+          )
+          .map((note, index) => (
+            <li
+              key={index}
+              className={note.isSeen ? "true" : "false"}
+              style={{
+                marginBottom: "12px",
+                padding: "10px",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                backgroundColor: note.isSeen ? "#f9f9f9" : "#e6f7ff"
+              }}
+            >
+              <strong>{note.title || "No Title"}</strong>
+              <p>{note.message}</p>
+              <small>{new Date(note.createdAt || note.timestamp).toLocaleString()}</small>
+            </li>
+          ))}
+      </ul>
+    )}
+  </div>
+)}
+
+
+
 
             {view === 'logout' && (
               <div>

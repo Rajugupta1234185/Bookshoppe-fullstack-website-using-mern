@@ -1,12 +1,11 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require('mongoose');
 
-const sellerNotificationSchema = new mongoose.Schema(
-    {
-        gmail: { type: String, required: true },
-        msg: { type: String, required: true }
-    },
-    { timestamps: true }
-);
+const notificationSchema = new mongoose.Schema({
+  email: { type: String, required: true },         // User's email
+  title: { type: String, required: true },         // Title of the notification
+  message: { type: String, required: true },       // Body of the message
+  isSeen: { type: Boolean, default: false },       // Whether the user has seen the notification
+  createdAt: { type: Date, default: Date.now }     // Timestamp
+});
 
-const SellerNotification = mongoose.model("SellerNotification", sellerNotificationSchema);
-module.exports = SellerNotification;
+module.exports = mongoose.model('SellerNotification', notificationSchema);

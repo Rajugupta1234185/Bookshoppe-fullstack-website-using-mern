@@ -32,6 +32,10 @@ const demosellerinfo =require('./router/demosellerinfo');
 const addbook=require('./router/bookRoute');
 const path = require('path');
 const sellerComplaintRoute = require('./router/sellerComplaintRoute');
+const adminsentnotification=require('./router/adminsentNotificationRoute');
+const adminfetchingroute= require('./router/adminNavbarfetchingRoute');
+const cart=require('./router/cartRoute');
+const khalti=require('./router/khaltiRoute');
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -49,6 +53,12 @@ app.use('/api/demoseller', newdemosellerinfo);
 app.use('/api/demosellerinfo',demosellerinfo);
 app.use('/api/addbook',addbook);
 app.use('/api/sellercomplaint', sellerComplaintRoute);
+app.use('/api/sent',adminsentnotification);
+app.use('/api/fetch', adminfetchingroute);
+app.use('/api/cart',cart);
+app.use('/api/khalti',khalti);
+
+
 
 app.get('/something', (req, res) => {
   res.cookie('testCookie', 'testValue', { httpOnly: true, secure: false, maxAge: 3600000 });

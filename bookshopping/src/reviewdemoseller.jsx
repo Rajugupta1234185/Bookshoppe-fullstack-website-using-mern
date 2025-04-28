@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import './reviewdemoseller.css';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Reviewdemoseller = () => {
+    const navigate=useNavigate();
     const [togglevalue, settogglevalue] = useState(false);
     const [sellers, setSellers] = useState([]);
     const [selectedSeller, setSelectedSeller] = useState(null);
@@ -43,17 +46,33 @@ const Reviewdemoseller = () => {
         extractdemosellerinfo();
     }, []);
 
+
+    //admin dashboard
+        const admindashboard=()=>{
+            navigate('/admin');
+        }
+    //end of admin dashboard
+
+
+      //handle logout
+    
+      const handleLogout = () => {
+        Cookies.remove('token'); // Remove the auth token
+        window.location.href = '/login'; // Redirect to login page or home
+      };
+      //end
+
     return (
         <div className="admin-main">
             <div className={`admin-navbar ${togglevalue ? "show" : "hide"}`}>
                 <div className="togglebar" onClick={toggle}>☰</div>
                 <div className="navbar-content">
-                    <div className="admin-dashboard">Dashboard</div>
+                    <div className="admin-dashboard" onClick={admindashboard}>Dashboard</div>
                     <div className="admin-seller">Seller</div>
                     <div className="admin-user">User</div>
                     <div className="product">Product</div>
                     <div className="admin-profile">Profile</div>
-                    <div className="admin-logout"><p>LOG OUT</p></div>
+                    <div className="admin-logout" onClick={handleLogout}><p>LOG OUT</p></div>
                 </div>
             </div>
 

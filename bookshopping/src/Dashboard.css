@@ -8,8 +8,8 @@
 }
 
   .firstdiv {
-    position: absolute;
-    z-index: 5;
+    position:sticky;
+    z-index: 20;
     width: 100%;
     height: 20%;
     display: flex;
@@ -133,9 +133,11 @@
 
   }
   .genreheading p{
-    font-size: 4rem;
-    font-family: 'Times New Roman', Times, serif;
-    color: #333;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family:cursive;
+   
+    margin-bottom: 30px;
   }
 
   .genrename{
@@ -219,22 +221,211 @@
   
   
   
+  .category-fiction {
+    z-index: 0;
+    position: relative;
+    margin-top: 15%; /* Reduced margin to avoid huge space */
+    margin-left: 2%;
+    width: 98%; /* Make width reasonable */
+  }
+  
+ 
+  .category-business,
+  .category-biography,
+  .category-kid,
+  .category-romantic {
+    z-index: 0;
+    position: relative;
+    margin-top: 8%; /* Reduced margin to avoid huge space */
+    margin-left: 2%;
+    width: 98%; /* Make width reasonable */
+  }
   
   
-  .category-fiction,.category-business,.category-biography,.category-kid,.category-romantic{
-    z-index:0;
-    position:relative;
-    margin-top:15%;
-    margin-left:2%;
-    height:10%;
-    width:100%;
+  
+  /* Category section for displaying books */
+  .category-section {
+    margin-top: 5%; /* Normal spacing */
+    padding: 20px;
+  }
+  
+  /* Heading for category */
+  .category-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family:cursive;
+   
+    margin-bottom: 30px;
+  }
+  
+  .book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    margin-top: 5%;
+    width: 100%;
+    gap: 20px;
+    overflow: hidden; /* <-- important */
+    position: relative; /* <-- important for child transform */
+  }
+  
+  .book-image {
+    width: 350px;
+    height: 480px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* <-- smooth hover */
+    will-change: transform; /* <-- better performance */
+  }
+  
+  .book-image:hover {
+    transform: scale(1.05); /* zoom without affecting layout */
+    z-index: 2; /* bring hovered image over others */
+  }
+  
+  
+  /* Pagination buttons */
+  .pagination-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
+  }
+  
+  .pagination-buttons button {
+    background-color: #FFA500;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-buttons button:hover {
+    background-color: #ff7f00;
+  }
+
+  .book-item {
+    position: relative;
+    width: 420px;
+    height: 560px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin: 20px;
+    background: white;
+    
+  }
+  
+  .image-container, .book-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+  }
+  
+  .book-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Buttons layout */
+  .book-hover {
+    background: conic-gradient(
+      from -90deg, /* Start at 90 degrees (right) */
+      
+      yellow 0deg 180deg, /* Yellow color */
+     /* Green color */
+      blue 180deg 360deg /* Blue color */
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%); /* Start fully off screen to right */
+  }
+  
+  .book-hover button {
+    background-color: #ff7f50;
+    border: none;
+    color: white;
+    margin: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .book-hover button:hover {
+    background-color: #ff6347;
+    transform: scale(1.05);
+  }
+  
+  /* Hover Effects */
+  .book-item:hover .image-container {
+    transform: translateX(-100%); /* Slide image fully to left */
+  }
+  
+  .book-item:hover .book-hover {
+    transform: translateX(0); /* Slide buttons into center from right */
+  }
 
 
-  }
-  .fictionheading p, .biographyheading p, .businessheading p, .kidheading p , .romanticheading p{
-    font-size: 4rem;
-    font-family: 'Times New Roman', Times, serif;
-    color: #333;
-  }
+  /* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Close Button */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Styling for the description text */
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  text-align: justify;
+}
 
   

@@ -3,8 +3,10 @@ import { useSpring, animated } from "@react-spring/web";
 import { RequiredValidate } from "./errorhandling";
 import axios from "axios";
 import { useFormData } from "./FormDataContext"; // Correctly import the hook
+import { useNavigate } from "react-router-dom";
 
 const OTPVerification = ({ backtoregistration, backtologin }) => {
+  const navigate= useNavigate();
   const { formData, setFormData } = useFormData(); // Access formData and setFormData from context
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState("");
@@ -44,6 +46,7 @@ const OTPVerification = ({ backtoregistration, backtologin }) => {
       });
 
       setMessage({ text: res.data.message, type: "success" });
+      navigate('/login');
 
       
         const response = await axios.post("http://localhost:5000/api/registration/registration", {
@@ -60,7 +63,7 @@ const OTPVerification = ({ backtoregistration, backtologin }) => {
           backtoregistration();
         }
          else if (response.status === 200) {
-          backtologin();
+          navigate('/login');
         }
 
         setStep(2);

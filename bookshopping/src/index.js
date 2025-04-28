@@ -18,6 +18,9 @@ import Admin from './admin/adminmain';
 import Seller from './Seller';
 import Reviewseller from './reviewdemoseller';
 import Adminsellercomplaint from './Adminsellercomplaint';
+import Adminusercomplaint from './adminusercomplaint';
+import Otpverify from './OTPVerification';
+import Cart from './Cart';
 
 
 function App() {
@@ -41,6 +44,9 @@ function App() {
           <Route path="/seller" element={<Seller/>}/>
           <Route path="/reviewdemoseller" element={<Reviewseller/>}/>
           <Route path="/adminsellercomplaint" element={<Adminsellercomplaint/>}/>
+          <Route path="/adminusercomplaint" element={<Adminusercomplaint/>}/>
+          <Route path="/otpverify" element={<Otpverify/>}/>
+          <Route path="/cart" element={<Cart/>}/>
         </Routes>
       </div>
     </Router>

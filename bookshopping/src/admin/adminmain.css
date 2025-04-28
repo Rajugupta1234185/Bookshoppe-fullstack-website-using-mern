@@ -161,3 +161,124 @@
 }
 
 
+
+.compose-box {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+  }
+  
+  .compose-header {
+    background-color: #f2f2f2;
+    padding: 10px 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .compose-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+  
+  .compose-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .compose-textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .compose-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    background-color: #f2f2f2;
+  }
+  
+  .send-btn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .send-btn:hover {
+    background-color: #1765c1;
+  }
+
+  .user-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-gap: 20px;
+    max-height: 20vh; /* Limits visible height */
+    overflow-y: auto; /* Makes it scrollable */
+    padding: 20px;
+    margin: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+  }
+  
+  .user-card {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .user-card:hover {
+    transform: scale(1.03);
+  }
+  
+  
+  
+  .user-details {
+    z-index:12;
+    position: absolute;
+    top:30%;
+    left:40%;
+    background: #fff;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+
+
+  
+  
+
+

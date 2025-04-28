@@ -6,6 +6,11 @@ import Cookies from 'js-cookie';
 
 
 const Seller = () => {
+
+  //define cookies for token////
+
+  const token=Cookies.get('token');
+  //end of this block of code
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   const [selectDeletebook, setselectDeletebook]= useState(null);
@@ -61,14 +66,25 @@ const handleupdateChange = (e) => {
 };
 const handleFileChange = (e) => {
   const { name, files } = e.target;
+  const fileData = name === 'previewPageUrls'
+    ? Array.from(files)  // multiple-preview case
+    : files[0];          // single-cover case
 
-  setFormData(fd => ({
-    ...fd,
-    [name]: name === 'previewPageUrls'
-      ? Array.from(files)   // for the multi‐file input
-      : files[0]            // for the single‐file input
-  }));
+  if (addBook) {
+    // We’re in Add-New-Book mode → write into bookData
+    setBookData(prev => ({
+      ...prev,
+      [name]: fileData
+    }));
+  } else {
+    // We’re in Update-Book mode → write into formData
+    setFormData(prev => ({
+      ...prev,
+      [name]: fileData
+    }));
+  }
 };
+
 
 
   const [addBook, setAddBook] = useState(false);
@@ -76,7 +92,7 @@ const handleFileChange = (e) => {
 
   const Updatebook = async () => {
     setUpdatebook(!updatebook);
-    const response = await axios.post('http://localhost:5000/api/addbook/getBooks');
+    const response = await axios.post('http://localhost:5000/api/addbook/getBooks',{token:token},{withCredentials:true});
     setBooks(response.data);
   };
 
@@ -117,7 +133,14 @@ const handleFileChange = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
 
+    const token=Cookies.get('token');   
+    
+    console.log("💾 bookData.bookImageUrl (should be a File):", bookData.bookImageUrl);
+console.log("💾 bookData.previewPageUrls (array):", bookData.previewPageUrls);
+
+
     const formData = new FormData();
+    formData.append('token',token);
     formData.append('bookName', bookData.bookName);
     formData.append('author', bookData.author);
     formData.append('originalPrice', bookData.originalPrice);
@@ -126,9 +149,14 @@ const handleFileChange = (e) => {
     formData.append('offer', bookData.offer);
     formData.append('categories', bookData.categories);
 
+
+   console.log("bookdataimageurl",formData.bookImageUrl);
     if (bookData.bookImageUrl) {
       formData.append('bookImageUrl', bookData.bookImageUrl);
+console.log("Pulled from FormData:", formData.get('bookImageUrl'));
+
     }
+    console.log("previewpageurl",bookData.previewPageUrls.length);
     if (bookData.previewPageUrls.length > 0) {
       bookData.previewPageUrls.forEach(file => {
         formData.append('previewPageUrls', file);
@@ -136,10 +164,15 @@ const handleFileChange = (e) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/addbook/addBook', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-
+      const response = await axios.post(
+        'http://localhost:5000/api/addbook/addBook',
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+          withCredentials: true    // ← here
+        }
+      );
+      
       console.log('Book added successfully:', response.data);
 
       setBookData({
@@ -207,17 +240,40 @@ const handleFileChange = (e) => {
     setdeletebook(!deletebook);
     
   
-    const response = await axios.post('http://localhost:5000/api/addbook/getBooks');
+    const response = await axios.post('http://localhost:5000/api/addbook/getBooks',{token:token},{withCredentials:true});
     setBooks(response.data);
   
   }
-  const Yesdelete=async()=>{
-    const res= await axios.post('http://localhost:5000/api/addbook/delete',{
-      email: selectDeletebook.email,
-      bookName: selectDeletebook.bookName
-    });
-    alert(res.data.message);
-  }
+  const Yesdelete = async () => {
+    try {
+      // 1) Send delete request
+      const res = await axios.post(
+        'http://localhost:5000/api/addbook/delete',
+        {
+          email: selectDeletebook.email,
+          bookName: selectDeletebook.bookName
+        },
+        { withCredentials: true }
+      );
+      alert(res.data.message);
+  
+      // 2) Close the modal
+      setselectDeletebook(null);
+      setdeletebook(false);
+  
+      // 3) Re‐fetch books so the deleted one disappears
+      const listRes = await axios.post(
+        'http://localhost:5000/api/addbook/getBooks',
+        {token:token},
+        { withCredentials: true }
+      );
+      setBooks(listRes.data);
+    } catch (err) {
+      console.error("Failed to delete book:", err);
+      alert(err.response?.data?.message || "Error deleting book");
+    }
+  };
+  
   const Nodelete=()=>{
          setselectDeletebook(null);
   }
@@ -225,7 +281,7 @@ const handleFileChange = (e) => {
 
   const booklist=async()=>{
     setbooklist(!Booklist);
-    const response = await axios.post('http://localhost:5000/api/addbook/getBooks');
+    const response = await axios.post('http://localhost:5000/api/addbook/getBooks',{token:token},{withCredentials:true});
     setBooks(response.data);
   }
 
@@ -254,6 +310,12 @@ const handleFileChange = (e) => {
   useEffect(()=>{
     getemail();
   },[]);
+
+
+  const handleLogout = () => {
+    Cookies.remove('token'); // Remove the auth token
+    window.location.href = '/login'; // Redirect to login page or home
+  };
   
   
   return (
@@ -271,7 +333,7 @@ const handleFileChange = (e) => {
       </div>
 
       <div className="Notification"><p>Notifications</p></div>
-      <div className="sellerlogout"><p>Log Out</p></div>
+      <div className="sellerlogout" onClick={handleLogout}><p>Log Out</p></div>
     </div>
 
     {/* 🧾 Complaint Modal */}

@@ -33,7 +33,7 @@ loginauthentification.post('/loginauthentification', async (req, res) => {
     matrix[2][1] = seller && await bcrypt.compare(password, seller.password) ? 1 : 0;
 
     // Generate JWT token
-    const payload = { gmail: gmail };
+    const payload = { gmail: gmail || email };
     const token = jwt.sign(payload, process.env.MYSECRETTOKENKEY, { expiresIn: '1h' });
 
     res.cookie('token', token, {

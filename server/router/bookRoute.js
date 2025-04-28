@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const Book = require('../schema/Book');
 const jwt = require('jsonwebtoken');
+require('dotenv').config({ path: './config.env' });
 
 const bookRoute = express.Router();
 
@@ -32,7 +33,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage,
   fileFilter: (req, file, cb) => {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg','image/webp'];
     if (!allowedTypes.includes(file.mimetype)) {
       return cb(new Error('Only image files are allowed!'), false);
     }
@@ -62,17 +63,28 @@ bookRoute.post('/addBook', (req, res, next) => {
     description,
     quantity,
     offer,
-    categories
+    categories,
+    token,
   } = req.body;
+
+
 
   try {
     // Get uploaded files
     const mainImageFile = req.files['bookImageUrl'] ? req.files['bookImageUrl'][0] : null;
+    console.log("Mainimagefile",mainImageFile);
     const previewFiles = req.files['previewPageUrls'] || [];
 
     // Construct URLs for uploaded files
     const bookImageUrl = mainImageFile ? `/uploads/${mainImageFile.filename}` : '';
     const previewPageUrls = previewFiles.map(file => `/uploads/${file.filename}`);
+
+    //get seller email
+
+    const decoded=jwt.verify(token, process.env.MYSECRETTOKENKEY);
+    const email=decoded.email||decoded.gmail;
+
+    console.log("from add book",email);
 
     // Create new book object
     const newBook = new Book({
@@ -84,7 +96,8 @@ bookRoute.post('/addBook', (req, res, next) => {
       previewPageUrls,
       quantity,
       offer,
-      categories
+      categories,
+      email
     });
 
     // Save the new book in the database
@@ -99,9 +112,13 @@ bookRoute.post('/addBook', (req, res, next) => {
 
 // Route to fetch all books
 bookRoute.post('/getBooks', async (req, res) => {
+  const{token}=req.body;
+
+  const decoded=jwt.verify(token,process.env.MYSECRETTOKENKEY);
+  const email=decoded.gmail;
   try {
     console.log("I am from bookRoutes");
-    const books = await Book.find();
+    const books = await Book.find({email:email});
     res.status(200).json(books);
   } catch (error) {
     console.error('Error fetching books:', error.message);
@@ -109,9 +126,41 @@ bookRoute.post('/getBooks', async (req, res) => {
   }
 });
 
-bookRoute.post('/delete',async(req,res)=>{
+// DELETE endpoint (using POST as per your client)
+bookRoute.post('/delete', async (req, res) => {
+  try {
+    const { email, bookName } = req.body;
 
+    // 1) Validate inputs
+    if (!email || !bookName) {
+      return res
+        .status(400)
+        .json({ message: 'Both email and bookName are required.' });
+    }
+
+    // 2) Attempt to find and delete the book
+    const deleted = await Book.findOneAndDelete({ email, bookName });
+
+    // 3) If nothing was deleted, respond 404
+    if (!deleted) {
+      return res
+        .status(404)
+        .json({ message: 'No book found for that email + name.' });
+    }
+
+    // 4) Success
+    return res.json({
+      message: 'Book deleted successfully.',
+      book: deleted
+    });
+  } catch (err) {
+    console.error('Error in /delete route:', err);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
+
+
+///=--------------update block----------------------
 bookRoute.post(
   
   '/update',
@@ -237,6 +286,27 @@ bookRoute.post('/getemail',async(req,res)=>{
     res.status(200).json({ email });
   } catch (err) {
     res.status(401).json({ error: 'Invalid token' });
+  }
+});
+
+bookRoute.post('/getbooksdashboard', async (req, res) => {
+  try {
+    const fictionbooks = await Book.find({ "categories.0": "Fiction" });
+    const romanticbooks = await Book.find({ "categories.0": "Romantic" });
+    const businessbooks = await Book.find({ "categories.0": "Business" });
+    const kidbooks = await Book.find({ "categories.0": "Kid" });
+    const biographybooks = await Book.find({ "categories.0": "Biography" });
+
+    res.json({
+      fictionbooks,
+      romanticbooks,
+      businessbooks,
+      kidbooks,
+      biographybooks
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ message: "error occurred" });
   }
 });
 
